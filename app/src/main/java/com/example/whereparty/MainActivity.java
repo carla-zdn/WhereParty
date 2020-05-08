@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private SharedPreferences sharedPreferences;
+    private Gson gson;
 
     static final String BASE_URL = "https://api.songkick.com/";
 
@@ -31,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreferences = getSharedPreferences("cache_concert", Context.MODE_PRIVATE);
+
+        gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
         makeApiCall();
     }
@@ -48,10 +58,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void makeApiCall(){
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -65,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<RestConcertResponse> call, Response<RestConcertResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     List<Event> eventList = response.body().getResultPage().getResults().getEvent();
+                    saveList(eventList);
                     showList(eventList);
                 }else{
                     showError();
@@ -76,6 +83,17 @@ public class MainActivity extends AppCompatActivity {
                 showError();
             }
         });
+    }
+
+    private void saveList(List<Event> eventList) {
+
+        String jsonEventList = gson.toJson(eventList);
+
+        sharedPreferences
+                .edit()
+                .putInt("cle_integer", 3)
+                .putString("jsonEventList", jsonEventList)
+                .apply();
     }
 
     private void showError() {
