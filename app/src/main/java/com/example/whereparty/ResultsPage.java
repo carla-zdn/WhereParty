@@ -1,6 +1,6 @@
 package com.example.whereparty;
 
-public class ResultPage {
+public class ResultsPage {
 
     private Results results;
 

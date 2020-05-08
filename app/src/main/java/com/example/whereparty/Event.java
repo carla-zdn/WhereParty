@@ -39,4 +39,5 @@ public class Event {
     public Venue getVenue() {
         return venue;
     }
+
 }

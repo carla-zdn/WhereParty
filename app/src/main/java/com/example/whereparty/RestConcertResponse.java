@@ -2,9 +2,9 @@ package com.example.whereparty;
 
 public class RestConcertResponse {
 
-    private ResultPage resultPage;
+    private ResultsPage resultsPage;
 
-    public ResultPage getResultPage() {
-        return resultPage;
+    public ResultsPage getResultPage() {
+        return resultsPage;
     }
 }
