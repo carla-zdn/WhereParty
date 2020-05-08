@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,15 +28,40 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-
-    static final String BASE_URL = "https://api.songkick.com/";
+    private SharedPreferences sharedPreferences;
+    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        makeApiCall();
+        sharedPreferences = getSharedPreferences("cache_concert", Context.MODE_PRIVATE);
+
+        gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        List<Event> eventList = getDataFromCache();
+
+        if(eventList != null){
+            showList(eventList);
+        }else{
+            makeApiCall();
+        }
+    }
+
+    private List<Event> getDataFromCache() {
+
+        String jsonEventList = sharedPreferences.getString(Constants.KEY_EVENT_LIST, null);
+
+        if(jsonEventList == null){
+            return null;
+        }else{
+            Type eventListType = new TypeToken<List<Event>>(){}.getType();
+            return gson.fromJson(jsonEventList, eventListType);
+        }
+
     }
 
     private void showList(List<Event> eventList) {
@@ -48,12 +77,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void makeApiCall(){
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -65,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<RestConcertResponse> call, Response<RestConcertResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     List<Event> eventList = response.body().getResultPage().getResults().getEvent();
+                    saveList(eventList);
                     showList(eventList);
                 }else{
                     showError();
@@ -78,7 +104,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void saveList(List<Event> eventList) {
+
+        String jsonEventList = gson.toJson(eventList);
+
+        sharedPreferences
+                .edit()
+                .putInt("cle_integer", 3)
+                .putString(Constants.KEY_EVENT_LIST, jsonEventList)
+                .apply();
+    }
+
     private void showError() {
-        Toast.makeText(this, "API Error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "No data in cache", Toast.LENGTH_SHORT).show();
     }
 }
