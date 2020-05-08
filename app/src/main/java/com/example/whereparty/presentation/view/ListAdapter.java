@@ -1,4 +1,4 @@
-package com.example.whereparty;
+package com.example.whereparty.presentation.view;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.whereparty.R;
+import com.example.whereparty.presentation.model.Event;
 
 import java.util.List;
 

@@ -1,20 +1,19 @@
-package com.example.whereparty;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.whereparty.presentation.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.widget.Toast;
 
+import com.example.whereparty.Constants;
+import com.example.whereparty.Injection;
+import com.example.whereparty.data.ConcertApi;
+import com.example.whereparty.presentation.model.Event;
+import com.example.whereparty.presentation.model.RestConcertResponse;
+import com.example.whereparty.presentation.view.MainActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -23,29 +22,24 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainController {
 
-    private RecyclerView recyclerView;
-    private ListAdapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
     private SharedPreferences sharedPreferences;
     private Gson gson;
+    private MainActivity view;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public MainController(SharedPreferences sharedPreferences, Gson gson, MainActivity view) {
+        this.sharedPreferences = sharedPreferences;
+        this.gson = gson;
+        this.view = view;
+    }
 
-        sharedPreferences = getSharedPreferences("cache_concert", Context.MODE_PRIVATE);
-
-        gson = new GsonBuilder()
-                .setLenient()
-                .create();
+    public void onStart(){
 
         List<Event> eventList = getDataFromCache();
 
         if(eventList != null){
-            showList(eventList);
+            view.showList(eventList);
         }else{
             makeApiCall();
         }
@@ -64,42 +58,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void showList(List<Event> eventList) {
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        // define an adapter
-        mAdapter = new ListAdapter(eventList);
-        recyclerView.setAdapter(mAdapter);
-    }
-
     private void makeApiCall(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
 
-        ConcertApi concertApi = retrofit.create(ConcertApi.class);
-
-        Call<RestConcertResponse> call = concertApi.getConcertResponse();
+        Call<RestConcertResponse> call = Injection.getConcertApi().getConcertResponse();
         call.enqueue(new Callback<RestConcertResponse>() {
             @Override
             public void onResponse(Call<RestConcertResponse> call, Response<RestConcertResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     List<Event> eventList = response.body().getResultPage().getResults().getEvent();
                     saveList(eventList);
-                    showList(eventList);
+                    view.showList(eventList);
                 }else{
-                    showError();
+                    view.showError();
                 }
             }
 
             @Override
             public void onFailure(Call<RestConcertResponse> call, Throwable t) {
-                showError();
+                view.showError();
             }
         });
     }
@@ -113,9 +89,5 @@ public class MainActivity extends AppCompatActivity {
                 .putInt("cle_integer", 3)
                 .putString(Constants.KEY_EVENT_LIST, jsonEventList)
                 .apply();
-    }
-
-    private void showError() {
-        Toast.makeText(this, "No data in cache", Toast.LENGTH_SHORT).show();
     }
 }

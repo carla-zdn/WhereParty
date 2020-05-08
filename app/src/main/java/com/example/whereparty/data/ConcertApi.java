@@ -1,4 +1,6 @@
-package com.example.whereparty;
+package com.example.whereparty.data;
+
+import com.example.whereparty.presentation.model.RestConcertResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

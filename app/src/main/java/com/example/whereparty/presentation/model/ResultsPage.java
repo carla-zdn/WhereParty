@@ -1,4 +1,6 @@
-package com.example.whereparty;
+package com.example.whereparty.presentation.model;
+
+import com.example.whereparty.presentation.model.Results;
 
 public class ResultsPage {
 
