@@ -90,4 +90,8 @@ public class MainController {
                 .putString(Constants.KEY_EVENT_LIST, jsonEventList)
                 .apply();
     }
+
+    public void onRecyclerViewClick(Event event) {
+        view.navigateToDetails(event);
+    }
 }
