@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Where Party</string>
+    <string name="go_to_the_show">go to the show</string>
+    <string name="example_artist_name">Example artist Name</string>
+    <string name="example_venue_name">Example venue name</string>
+    <string name="example_date_of_the_show">07/05/2020</string>
 </resources>
