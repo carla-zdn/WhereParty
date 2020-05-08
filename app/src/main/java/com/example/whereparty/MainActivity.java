@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private Gson gson;
 
-    static final String BASE_URL = "https://api.songkick.com/";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +42,26 @@ public class MainActivity extends AppCompatActivity {
                 .setLenient()
                 .create();
 
-        makeApiCall();
+        List<Event> eventList = getDataFromCache();
+
+        if(eventList != null){
+            showList(eventList);
+        }else{
+            makeApiCall();
+        }
+    }
+
+    private List<Event> getDataFromCache() {
+
+        String jsonEventList = sharedPreferences.getString(Constants.KEY_EVENT_LIST, null);
+
+        if(jsonEventList == null){
+            return null;
+        }else{
+            Type eventListType = new TypeToken<List<Event>>(){}.getType();
+            return gson.fromJson(jsonEventList, eventListType);
+        }
+
     }
 
     private void showList(List<Event> eventList) {
@@ -59,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void makeApiCall(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -92,11 +111,11 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences
                 .edit()
                 .putInt("cle_integer", 3)
-                .putString("jsonEventList", jsonEventList)
+                .putString(Constants.KEY_EVENT_LIST, jsonEventList)
                 .apply();
     }
 
     private void showError() {
-        Toast.makeText(this, "API Error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "No data in cache", Toast.LENGTH_SHORT).show();
     }
 }
