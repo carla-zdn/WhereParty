@@ -1,4 +1,4 @@
-package com.example.whereparty;
+package com.example.whereparty.presentation.model;
 
 public class Venue {
 

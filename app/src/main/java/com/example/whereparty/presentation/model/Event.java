@@ -1,4 +1,8 @@
-package com.example.whereparty;
+package com.example.whereparty.presentation.model;
+
+import com.example.whereparty.presentation.model.Performance;
+import com.example.whereparty.presentation.model.Start;
+import com.example.whereparty.presentation.model.Venue;
 
 import java.util.List;
 

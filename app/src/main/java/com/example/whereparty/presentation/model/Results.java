@@ -1,4 +1,4 @@
-package com.example.whereparty;
+package com.example.whereparty.presentation.model;
 
 import java.util.List;
 
