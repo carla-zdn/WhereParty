@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.whereparty.Constants;
+import com.example.whereparty.Injection;
 import com.example.whereparty.data.ConcertApi;
 import com.example.whereparty.presentation.model.Event;
 import com.example.whereparty.presentation.model.RestConcertResponse;
@@ -58,14 +59,8 @@ public class MainController {
     }
 
     private void makeApiCall(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
 
-        ConcertApi concertApi = retrofit.create(ConcertApi.class);
-
-        Call<RestConcertResponse> call = concertApi.getConcertResponse();
+        Call<RestConcertResponse> call = Injection.getConcertApi().getConcertResponse();
         call.enqueue(new Callback<RestConcertResponse>() {
             @Override
             public void onResponse(Call<RestConcertResponse> call, Response<RestConcertResponse> response) {

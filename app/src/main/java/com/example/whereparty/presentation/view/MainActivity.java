@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.whereparty.Constants;
+import com.example.whereparty.Injection;
 import com.example.whereparty.R;
 import com.example.whereparty.data.ConcertApi;
 import com.example.whereparty.presentation.controller.MainController;
@@ -42,10 +43,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        controller = new MainController(getSharedPreferences("cache_concert", Context.MODE_PRIVATE),
-                new GsonBuilder()
-                        .setLenient()
-                        .create(), this
+        controller = new MainController(Injection.getSharedPreferences(getApplicationContext()),
+                Injection.getGson(), this
         );
         controller.onStart();
     }
