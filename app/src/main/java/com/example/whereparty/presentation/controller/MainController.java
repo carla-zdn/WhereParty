@@ -66,6 +66,7 @@ public class MainController {
             public void onResponse(Call<RestConcertResponse> call, Response<RestConcertResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     List<Event> eventList = response.body().getResultPage().getResults().getEvent();
+                    eventList.remove(0);//Problem with the first result
                     saveList(eventList);
                     view.showList(eventList);
                 }else{
@@ -89,5 +90,9 @@ public class MainController {
                 .putInt("cle_integer", 3)
                 .putString(Constants.KEY_EVENT_LIST, jsonEventList)
                 .apply();
+    }
+
+    public void onRecyclerViewClick(Event event, String typeDetail) {
+        view.navigateToDetails(event,typeDetail);
     }
 }

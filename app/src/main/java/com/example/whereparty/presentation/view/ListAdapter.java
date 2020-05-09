@@ -14,13 +14,16 @@ import com.example.whereparty.presentation.model.Event;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
-    private List<Event> values;
+    private final List<Event> values;
+    private final OnItemClickListener listener;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+    public interface OnItemClickListener {
+        void onItemClick(Event item);
+
+        void onItemClick(Event item, String typeDetail);
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         TextView txtArtistName;
         TextView txtVenueName;
         TextView txtDate;
@@ -45,31 +48,27 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         notifyItemRemoved(position);
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public ListAdapter(List<Event> myDataset) {
-        values = myDataset;
+    public ListAdapter(List<Event> myDataset, OnItemClickListener listener) {
+        this.values = myDataset;
+        this.listener = listener;
     }
 
-    // Create new views (invoked by the layout manager)
     @NonNull
     @Override
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
-        // create a new view
         LayoutInflater inflater = LayoutInflater.from(
                 parent.getContext());
         View v =
                 inflater.inflate(R.layout.row_layout, parent, false);
-        // set the view's size, margins, paddings and layout parameters
+
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
+
         final Event currentEvent = values.get(position);
 
         String artistName = currentEvent.getPerformance().get(0).getDisplayName();
@@ -77,18 +76,35 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             artistName = artistName.substring(27);
         }
         holder.txtArtistName.setText(artistName);
+        holder.txtArtistName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(currentEvent, "artistDetail");
+            }
+        });
 
         String displayName = currentEvent.getDisplayName();
         if(displayName.length() > 45){
             displayName = displayName.substring(0,45);
         }
         holder.txtVenueName.setText(displayName);
+        holder.txtVenueName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(currentEvent, "venueDetail");
+            }
+        });
 
         holder.txtDate.setText(currentEvent.getStart().getDate());
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                listener.onItemClick(currentEvent, "reservation");
+            }
+        });
+
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return values.size();
