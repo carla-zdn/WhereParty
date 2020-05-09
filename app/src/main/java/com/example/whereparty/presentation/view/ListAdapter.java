@@ -18,8 +18,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private final OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(Event item);
-
         void onItemClick(Event item, String typeDetail);
     }
 
@@ -32,23 +30,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         ViewHolder(View v) {
             super(v);
             layout = v;
-            txtArtistName = (TextView) v.findViewById(R.id.artistName);
-            txtVenueName = (TextView) v.findViewById(R.id.venue);
-            txtDate = (TextView) v.findViewById(R.id.date);
+            txtArtistName = v.findViewById(R.id.artistName);
+            txtVenueName = v.findViewById(R.id.venue);
+            txtDate = v.findViewById(R.id.date);
         }
     }
 
-    public void add(int position, Event item) {
-        values.add(position, item);
-        notifyItemInserted(position);
-    }
-
-    private void remove(int position) {
-        values.remove(position);
-        notifyItemRemoved(position);
-    }
-
-    public ListAdapter(List<Event> myDataset, OnItemClickListener listener) {
+    ListAdapter(List<Event> myDataset, OnItemClickListener listener) {
         this.values = myDataset;
         this.listener = listener;
     }
@@ -62,12 +50,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         View v =
                 inflater.inflate(R.layout.row_layout, parent, false);
 
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         final Event currentEvent = values.get(position);
 

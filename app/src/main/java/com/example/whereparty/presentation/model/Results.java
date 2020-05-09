@@ -9,4 +9,8 @@ public class Results {
     public List<Event> getEvent() {
         return event;
     }
+
+    public Results(List<Event> event) {
+        this.event = event;
+    }
 }

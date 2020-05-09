@@ -12,4 +12,9 @@ public class Performance {
     public Artist getArtist() {
         return artist;
     }
+
+    public Performance(String displayName, Artist artist) {
+        this.displayName = displayName;
+        this.artist = artist;
+    }
 }

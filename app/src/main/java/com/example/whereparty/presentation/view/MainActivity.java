@@ -17,10 +17,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private ListAdapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-
 
     private MainController controller;
 
@@ -36,19 +32,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showList(List<Event> eventList) {
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         // define an adapter
-        mAdapter = new ListAdapter(eventList, new ListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Event item) {
-
-            }
-
+        ListAdapter mAdapter = new ListAdapter(eventList, new ListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Event item, String typeDetail) {
                 controller.onRecyclerViewClick(item, typeDetail);

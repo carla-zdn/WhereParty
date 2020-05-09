@@ -1,21 +1,17 @@
 package com.example.whereparty.presentation.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.whereparty.Injection;
 import com.example.whereparty.R;
-import com.example.whereparty.presentation.controller.MainController;
 import com.example.whereparty.presentation.model.Event;
 
-import java.util.List;
 import java.util.Objects;
 
 public class DetailActivity extends AppCompatActivity {
@@ -29,7 +25,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_activity);
 
-        webView = (WebView) findViewById(R.id.webView);
+        webView = findViewById(R.id.webView);
 
         Intent intent = getIntent();
         String eventJson = intent.getStringExtra("eventKey");
@@ -47,10 +43,11 @@ public class DetailActivity extends AppCompatActivity {
                 break;
         }
 
-        showDetail(detailEvent);
+        showDetail();
     }
 
-    private void showDetail(Event detailEvent) {
+    @SuppressLint("SetJavaScriptEnabled")
+    private void showDetail() {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
         webView.setWebViewClient(new WebViewClient(){

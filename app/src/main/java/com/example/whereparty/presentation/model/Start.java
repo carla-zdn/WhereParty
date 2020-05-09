@@ -7,4 +7,8 @@ public class Start {
     public String getDate() {
         return date;
     }
+
+    public Start(String date) {
+        this.date = date;
+    }
 }

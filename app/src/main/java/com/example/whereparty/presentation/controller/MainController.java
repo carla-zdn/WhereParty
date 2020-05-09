@@ -1,16 +1,15 @@
 package com.example.whereparty.presentation.controller;
 
-import android.content.Context;
 import android.content.SharedPreferences;
+
+import androidx.annotation.NonNull;
 
 import com.example.whereparty.Constants;
 import com.example.whereparty.Injection;
-import com.example.whereparty.data.ConcertApi;
 import com.example.whereparty.presentation.model.Event;
 import com.example.whereparty.presentation.model.RestConcertResponse;
 import com.example.whereparty.presentation.view.MainActivity;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -19,8 +18,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainController {
 
@@ -63,7 +60,7 @@ public class MainController {
         Call<RestConcertResponse> call = Injection.getConcertApi().getConcertResponse();
         call.enqueue(new Callback<RestConcertResponse>() {
             @Override
-            public void onResponse(Call<RestConcertResponse> call, Response<RestConcertResponse> response) {
+            public void onResponse(@NonNull Call<RestConcertResponse> call, @NonNull Response<RestConcertResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     List<Event> eventList = response.body().getResultPage().getResults().getEvent();
                     eventList.remove(0);//Problem with the first result
@@ -75,7 +72,7 @@ public class MainController {
             }
 
             @Override
-            public void onFailure(Call<RestConcertResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<RestConcertResponse> call, @NonNull Throwable t) {
                 view.showError();
             }
         });

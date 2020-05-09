@@ -18,7 +18,7 @@ public class Injection {
 
     public static Gson getGson(){
         if(gsonInstance == null){
-            return new GsonBuilder()
+            gsonInstance = new GsonBuilder()
                     .setLenient()
                     .create();
         }

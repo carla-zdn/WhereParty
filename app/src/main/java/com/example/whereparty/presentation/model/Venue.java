@@ -2,14 +2,19 @@ package com.example.whereparty.presentation.model;
 
 public class Venue {
 
-    private String displayName;
+    //private String displayName;
     private String uri;
 
-    public String getDisplayName() {
+    /*public String getDisplayName() {
         return displayName;
-    }
+    }*/
 
     public String getUri() {
         return uri;
+    }
+
+    public Venue(/*String displayName,*/ String uri) {
+        //this.displayName = displayName;
+        this.uri = uri;
     }
 }

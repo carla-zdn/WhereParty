@@ -1,17 +1,13 @@
 package com.example.whereparty.presentation.model;
 
-import com.example.whereparty.presentation.model.Performance;
-import com.example.whereparty.presentation.model.Start;
-import com.example.whereparty.presentation.model.Venue;
-
 import java.util.List;
 
 public class Event {
 
     private String displayName;
-    private String type;
+    //private String type;
     private String uri;
-    private Double popularity;
+    //private Double popularity;
     private Start start;
     private List<Performance> performance;
     private Venue venue;
@@ -20,17 +16,17 @@ public class Event {
         return displayName;
     }
 
-    public String getType() {
+    /*public String getType() {
         return type;
-    }
+    }*/
 
     public String getUri() {
         return uri;
     }
 
-    public Double getPopularity() {
+    /*public Double getPopularity() {
         return popularity;
-    }
+    }*/
 
     public Start getStart() {
         return start;
@@ -44,4 +40,13 @@ public class Event {
         return venue;
     }
 
+    public Event(String displayName/*, String type*/, String uri/*, Double popularity*/, Start start, List<Performance> performance, Venue venue) {
+        this.displayName = displayName;
+        //this.type = type;
+        this.uri = uri;
+        //this.popularity = popularity;
+        this.start = start;
+        this.performance = performance;
+        this.venue = venue;
+    }
 }
