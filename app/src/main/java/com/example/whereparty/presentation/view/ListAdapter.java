@@ -17,9 +17,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private final List<Event> values;
     private final OnItemClickListener listener;
 
-
     public interface OnItemClickListener {
         void onItemClick(Event item);
+
+        void onItemClick(Event item, String typeDetail);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -78,7 +79,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.txtArtistName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                listener.onItemClick(currentEvent, "artistDetail");
             }
         });
 
@@ -90,7 +91,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.txtVenueName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                listener.onItemClick(currentEvent, "venueDetail");
             }
         });
 
@@ -98,7 +99,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                listener.onItemClick(currentEvent);
+                listener.onItemClick(currentEvent, "reservation");
             }
         });
 

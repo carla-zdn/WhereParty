@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -45,7 +46,12 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ListAdapter(eventList, new ListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Event item) {
-                controller.onRecyclerViewClick(item);
+
+            }
+
+            @Override
+            public void onItemClick(Event item, String typeDetail) {
+                controller.onRecyclerViewClick(item, typeDetail);
             }
         });
         recyclerView.setAdapter(mAdapter);
@@ -55,7 +61,11 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "No data in cache", Toast.LENGTH_SHORT).show();
     }
 
-    public void navigateToDetails(Event event) {
+    public void navigateToDetails(Event event, String typeDetail) {
+        Intent myIntent = new Intent(MainActivity.this, DetailActivity.class);
 
+        myIntent.putExtra("eventKey", Injection.getGson().toJson(event));
+        myIntent.putExtra("typeDetailKey", typeDetail);
+        MainActivity.this.startActivity(myIntent);
     }
 }
