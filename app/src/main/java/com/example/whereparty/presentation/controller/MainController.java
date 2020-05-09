@@ -1,5 +1,6 @@
 package com.example.whereparty.presentation.controller;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
@@ -35,10 +36,15 @@ public class MainController {
 
         List<Event> eventList = getDataFromCache();
 
-        if(eventList != null){
+        Intent intent = view.getIntent();
+        String id = intent.getStringExtra("idKey");
+
+        assert eventList != null;
+        assert eventList.get(0).getVenue().getMetroArea().getId() != null;
+        if(eventList.get(0).getVenue().getMetroArea().getId().equals(id)){
             view.showList(eventList);
         }else{
-            makeApiCall();
+            makeApiCall(id);
         }
     }
 
@@ -55,9 +61,9 @@ public class MainController {
 
     }
 
-    private void makeApiCall(){
+    private void makeApiCall(String id){
 
-        Call<RestConcertResponse> call = Injection.getConcertApi().getConcertResponse();
+        Call<RestConcertResponse> call = Injection.getConcertApi().getConcertResponse("https://api.songkick.com/api/3.0/metro_areas/" + id + "/calendar.json?apikey=" + Constants.API_KEY);
         call.enqueue(new Callback<RestConcertResponse>() {
             @Override
             public void onResponse(@NonNull Call<RestConcertResponse> call, @NonNull Response<RestConcertResponse> response) {

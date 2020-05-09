@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.367" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -55,8 +55,8 @@
         android:layout_marginBottom="16dp"
         android:text="@string/ville"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView" />
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewWelcome"
+        app:layout_constraintStart_toStartOf="@+id/recyclerViewWelcome" />
 
     <TextView
         android:id="@+id/textViewAreaCountry"
@@ -66,21 +66,20 @@
         android:layout_marginBottom="16dp"
         android:text="@string/pays"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView" />
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewWelcome"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerViewWelcome" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewWelcome"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="230dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.497" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"

@@ -8,6 +8,10 @@ public class Location {
         return metroArea;
     }
 
+    public void setMetroArea(MetroArea metroArea) {
+        this.metroArea = metroArea;
+    }
+
     public Location(MetroArea metroArea) {
         this.metroArea = metroArea;
     }

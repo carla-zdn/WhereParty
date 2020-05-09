@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.whereparty.Injection;
 import com.example.whereparty.R;
 import com.example.whereparty.presentation.controller.MainController;
+import com.example.whereparty.presentation.controller.WelcomeController;
+import com.example.whereparty.presentation.model.areaAPI.Location;
 import com.example.whereparty.presentation.model.concertAPI.Event;
 
 import java.util.List;
@@ -18,45 +20,43 @@ import java.util.List;
 public class WelcomeActivity extends AppCompatActivity {
 
 
-    private MainController controller;
+    private WelcomeController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_welcome);
 
-        /*controller = new MainController(Injection.getSharedPreferences(getApplicationContext()),
-                Injection.getGson(), this
-        );
-        controller.onStart();*/
+        controller = new WelcomeController(this, Injection.getSharedPreferences(getApplicationContext()),
+                Injection.getGson());
+        controller.onStart();
     }
 
-    public void showList(List<Event> eventList) {
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+    public void showList(List<Location> locationList) {
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewWelcome);
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         // define an adapter
-        ListAdapter mAdapter = new ListAdapter(eventList, new ListAdapter.OnItemClickListener() {
+        WelcomeListAdapter mAdapter = new WelcomeListAdapter(locationList, new WelcomeListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Event item, String typeDetail) {
-                controller.onRecyclerViewClick(item, typeDetail);
+            public void onItemClick(String id) {
+                controller.onRecyclerViewClick(id);
             }
         });
         recyclerView.setAdapter(mAdapter);
     }
 
     public void showError() {
-        Toast.makeText(this, "No data in cache", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "La recherche n'a pas pu aboutir", Toast.LENGTH_SHORT).show();
     }
 
-    public void navigateToDetails(Event event, String typeDetail) {
-        Intent myIntent = new Intent(WelcomeActivity.this, DetailActivity.class);
+    public void navigateToDetails(String id) {
+        Intent myIntent = new Intent(WelcomeActivity.this, MainActivity.class);
 
-        myIntent.putExtra("eventKey", Injection.getGson().toJson(event));
-        myIntent.putExtra("typeDetailKey", typeDetail);
+        myIntent.putExtra("idKey", id);
         WelcomeActivity.this.startActivity(myIntent);
     }
 }

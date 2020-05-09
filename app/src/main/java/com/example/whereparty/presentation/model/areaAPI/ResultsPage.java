@@ -4,7 +4,7 @@ public class ResultsPage {
 
     private Results results;
 
-    public Results getResultsArea() {
+    public Results getResults() {
         return results;
     }
 

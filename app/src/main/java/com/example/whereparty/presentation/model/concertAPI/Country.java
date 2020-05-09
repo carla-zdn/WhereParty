@@ -1,4 +1,4 @@
-package com.example.whereparty.presentation.model.areaAPI;
+package com.example.whereparty.presentation.model.concertAPI;
 
 public class Country {
 
@@ -6,10 +6,6 @@ public class Country {
 
     public String getDisplayName() {
         return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
     }
 
     public Country(String displayName) {

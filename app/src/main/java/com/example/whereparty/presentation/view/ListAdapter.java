@@ -70,7 +70,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             }
         });
 
-        String displayName = currentEvent.getDisplayName();
+        String displayName = currentEvent.getVenue().getDisplayName();
         if(displayName.length() > 45){
             displayName = displayName.substring(0,45);
         }

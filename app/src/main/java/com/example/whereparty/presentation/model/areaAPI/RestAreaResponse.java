@@ -4,7 +4,7 @@ public class RestAreaResponse {
 
     private ResultsPage resultsPage;
 
-    public ResultsPage getResultsPageArea() {
+    public ResultsPage getResultsPage() {
         return resultsPage;
     }
 

@@ -2,19 +2,25 @@ package com.example.whereparty.presentation.model.concertAPI;
 
 public class Venue {
 
-    //private String displayName;
+    private MetroArea metroArea;
+    private String displayName;
     private String uri;
 
-    /*public String getDisplayName() {
+    public String getDisplayName() {
         return displayName;
-    }*/
+    }
+
+    public MetroArea getMetroArea() {
+        return metroArea;
+    }
 
     public String getUri() {
         return uri;
     }
 
-    public Venue(/*String displayName,*/ String uri) {
-        //this.displayName = displayName;
+    public Venue(MetroArea metroArea,String displayName, String uri) {
+        this.metroArea = metroArea;
+        this.displayName = displayName;
         this.uri = uri;
     }
 }

@@ -1,9 +1,9 @@
-package com.example.whereparty.presentation.model.areaAPI;
+package com.example.whereparty.presentation.model.concertAPI;
 
 public class MetroArea {
 
-    private Country country;
     private String displayName;
+    private Country country;
     private int id;
 
     public Country getCountry() {
@@ -14,25 +14,13 @@ public class MetroArea {
         return displayName;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return Integer.toString(id);
     }
 
     public MetroArea(Country country, String displayName, int id) {
         this.country = country;
         this.displayName = displayName;
-        this.id = id;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public void setId(int id) {
         this.id = id;
     }
 }

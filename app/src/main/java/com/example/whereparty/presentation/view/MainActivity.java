@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showList(List<Event> eventList) {
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewMain);
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
