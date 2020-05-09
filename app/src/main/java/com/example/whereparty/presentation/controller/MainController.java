@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 
 import com.example.whereparty.Constants;
 import com.example.whereparty.Injection;
-import com.example.whereparty.presentation.model.Event;
-import com.example.whereparty.presentation.model.RestConcertResponse;
+import com.example.whereparty.presentation.model.concertAPI.Event;
+import com.example.whereparty.presentation.model.concertAPI.RestConcertResponse;
 import com.example.whereparty.presentation.view.MainActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

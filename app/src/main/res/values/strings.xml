@@ -4,4 +4,9 @@
     <string name="example_artist_name">Example artist Name</string>
     <string name="example_venue_name">Example venue name</string>
     <string name="example_date_of_the_show">07/05/2020</string>
+    <string name="area">Area</string>
+    <string name="ac">AC</string>
+    <string name="pays">Pays :</string>
+    <string name="ville">Ville :</string>
+    <string name="rechercher_la_ville">Rechercher la ville</string>
 </resources>

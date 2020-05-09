@@ -1,12 +1,12 @@
 package com.example.whereparty.presentation.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.whereparty.Injection;
 import com.example.whereparty.R;
@@ -15,7 +15,7 @@ import com.example.whereparty.presentation.model.concertAPI.Event;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
 
 
     private MainController controller;
@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        controller = new MainController(Injection.getSharedPreferences(getApplicationContext()),
+        /*controller = new MainController(Injection.getSharedPreferences(getApplicationContext()),
                 Injection.getGson(), this
         );
-        controller.onStart();
+        controller.onStart();*/
     }
 
     public void showList(List<Event> eventList) {
@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navigateToDetails(Event event, String typeDetail) {
-        Intent myIntent = new Intent(MainActivity.this, DetailActivity.class);
+        Intent myIntent = new Intent(WelcomeActivity.this, DetailActivity.class);
 
         myIntent.putExtra("eventKey", Injection.getGson().toJson(event));
         myIntent.putExtra("typeDetailKey", typeDetail);
-        MainActivity.this.startActivity(myIntent);
+        WelcomeActivity.this.startActivity(myIntent);
     }
 }

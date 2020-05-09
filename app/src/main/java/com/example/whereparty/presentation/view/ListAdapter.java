@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.whereparty.R;
-import com.example.whereparty.presentation.model.Event;
+import com.example.whereparty.presentation.model.concertAPI.Event;
 
 import java.util.List;
 
