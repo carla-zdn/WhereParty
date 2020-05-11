@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.whereparty.Injection;
 import com.example.whereparty.R;
-import com.example.whereparty.presentation.model.Event;
+import com.example.whereparty.presentation.model.concertAPI.Event;
 
 import java.util.Objects;
 
@@ -23,7 +23,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_activity);
+        setContentView(R.layout.activity_detail);
 
         webView = findViewById(R.id.webView);
 

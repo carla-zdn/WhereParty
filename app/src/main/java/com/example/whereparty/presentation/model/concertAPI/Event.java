@@ -1,10 +1,10 @@
-package com.example.whereparty.presentation.model;
+package com.example.whereparty.presentation.model.concertAPI;
 
 import java.util.List;
 
 public class Event {
 
-    private String displayName;
+    //private String displayName;
     //private String type;
     private String uri;
     //private Double popularity;
@@ -12,9 +12,9 @@ public class Event {
     private List<Performance> performance;
     private Venue venue;
 
-    public String getDisplayName() {
+    /*public String getDisplayName() {
         return displayName;
-    }
+    }*/
 
     /*public String getType() {
         return type;
@@ -40,8 +40,8 @@ public class Event {
         return venue;
     }
 
-    public Event(String displayName/*, String type*/, String uri/*, Double popularity*/, Start start, List<Performance> performance, Venue venue) {
-        this.displayName = displayName;
+    public Event(/*String displayName, String type, */String uri/*, Double popularity*/, Start start, List<Performance> performance, Venue venue) {
+        //this.displayName = displayName;
         //this.type = type;
         this.uri = uri;
         //this.popularity = popularity;

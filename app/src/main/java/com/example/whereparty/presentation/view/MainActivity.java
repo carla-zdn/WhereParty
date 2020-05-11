@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.example.whereparty.Injection;
 import com.example.whereparty.R;
 import com.example.whereparty.presentation.controller.MainController;
-import com.example.whereparty.presentation.model.Event;
+import com.example.whereparty.presentation.model.concertAPI.Event;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showList(List<Event> eventList) {
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewMain);
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
