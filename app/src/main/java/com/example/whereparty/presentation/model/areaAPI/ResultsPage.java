@@ -1,4 +1,4 @@
-package com.example.whereparty.presentation.model;
+package com.example.whereparty.presentation.model.areaAPI;
 
 public class ResultsPage {
 

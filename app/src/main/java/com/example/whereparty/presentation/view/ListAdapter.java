@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.whereparty.R;
-import com.example.whereparty.presentation.model.Event;
+import com.example.whereparty.presentation.model.concertAPI.Event;
 
 import java.util.List;
 
@@ -70,7 +70,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             }
         });
 
-        String displayName = currentEvent.getDisplayName();
+        String displayName = currentEvent.getVenue().getDisplayName();
         if(displayName.length() > 45){
             displayName = displayName.substring(0,45);
         }

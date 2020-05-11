@@ -4,4 +4,14 @@
     <string name="example_artist_name">Example artist Name</string>
     <string name="example_venue_name">Example venue name</string>
     <string name="example_date_of_the_show">07/05/2020</string>
+    <string name="area">Area</string>
+    <string name="ac">AC</string>
+    <string name="pays">Pays :</string>
+    <string name="ville">Ville :</string>
+    <string name="rechercher_la_ville">Rechercher la ville</string>
+    <string name="dans_quelle_ville_voulez_vous_faire_la_f_te">Dans quelle ville voulez vous faire la fête ?</string>
+    <string name="vous_faire_la_f_te">vous faire la fête?</string>
+    <string name="dans_quelle_ville_voulez">Dans quelle ville voulez</string>
+    <string name="veuillez_crire_le_nom_de_la_ville_en_anglais">Veuillez écrire le nom de la ville en Anglais</string>
+    <string name="description">description</string>
 </resources>
