@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.whereparty.Constants;
 import com.example.whereparty.Injection;
@@ -23,7 +24,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,27 +69,23 @@ public class WelcomeController {
             }
         });
 
-        com.example.whereparty.presentation.model.concertAPI.MetroArea cache = getDataFromCache().get(0).getVenue().getMetroArea();
+        /*com.example.whereparty.presentation.model.concertAPI.MetroArea*/ List<Event> getCache = getDataFromCache();//.get(0).getVenue().getMetroArea();
 
-        assert cache != null;
-        assert cache.getCountry() != null;
-        if(cache.getCountry().getDisplayName()!=null && cache.getDisplayName()!=null && cache.getId()!=null) {
-            List<Location> areaList = null;
-            Location savedLocation = null;
-            MetroArea savedMetroArea = null;
-            Country savedCountry = null;
 
-            savedCountry.setDisplayName(cache.getCountry().getDisplayName());
+        if(getCache != null) {
 
-            savedMetroArea.setCountry(savedCountry);
-            savedMetroArea.setDisplayName(cache.getDisplayName());
-            savedMetroArea.setId(Integer.parseInt(cache.getId()));
+            com.example.whereparty.presentation.model.concertAPI.MetroArea cache = getCache.get(0).getVenue().getMetroArea();
 
-            savedLocation.setMetroArea(savedMetroArea);
+            if (cache.getCountry().getDisplayName() != null && cache.getDisplayName() != null && cache.getId() != null) {
+                Country savedCountry = new Country(cache.getCountry().getDisplayName());
+                MetroArea savedMetroArea = new MetroArea(savedCountry, cache.getDisplayName(), Integer.parseInt(cache.getId()));
+                Location savedLocation = new Location(savedMetroArea);
+                List<Location> areaList = new ArrayList<>();
 
-            areaList.add(savedLocation);
+                areaList.add(savedLocation);
 
-            view.showList(areaList);
+                view.showList(areaList);
+            }
         }
 
     }

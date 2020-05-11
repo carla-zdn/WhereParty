@@ -39,10 +39,12 @@ public class MainController {
         Intent intent = view.getIntent();
         String id = intent.getStringExtra("idKey");
 
-        assert eventList != null;
-        assert eventList.get(0).getVenue().getMetroArea().getId() != null;
-        if(eventList.get(0).getVenue().getMetroArea().getId().equals(id)){
-            view.showList(eventList);
+        if (eventList != null) {
+            if(eventList.get(0).getVenue().getMetroArea().getId().equals(id)){
+                view.showList(eventList);
+            }else{
+                makeApiCall(id);
+            }
         }else{
             makeApiCall(id);
         }
