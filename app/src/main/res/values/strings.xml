@@ -9,4 +9,9 @@
     <string name="pays">Pays :</string>
     <string name="ville">Ville :</string>
     <string name="rechercher_la_ville">Rechercher la ville</string>
+    <string name="dans_quelle_ville_voulez_vous_faire_la_f_te">Dans quelle ville voulez vous faire la fête ?</string>
+    <string name="vous_faire_la_f_te">vous faire la fête?</string>
+    <string name="dans_quelle_ville_voulez">Dans quelle ville voulez</string>
+    <string name="veuillez_crire_le_nom_de_la_ville_en_anglais">Veuillez écrire le nom de la ville en Anglais</string>
+    <string name="description">description</string>
 </resources>
