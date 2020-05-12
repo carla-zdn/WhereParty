@@ -33,3 +33,29 @@ Cette application à pour but de trouver des évènements musicaux dans une vill
 - Voici des exemples de différents écrans pour l'évènement juste au dessus
 
 <img src="readmeImage/Evenement%20-%20Artiste.png" width= 300> <img src="readmeImage/Evenement%20-%20Salle.png" width= 300> <img src="readmeImage/Evenement%20-%20Evenement.png" width= 300>
+
+## Aspect utilisé :
+
+### Pré-requis :
+
+- Ecran avec une liste d'éléments
+- Ecran avec le détail d'un éléments 
+- Appel WebService à une API Rest
+- Stockage de données en cache
+
+### Les plus :
+
+- Architecture :
+	- Singleton
+	- Design Patterns
+	- MVC
+	- Principe SOLID
+- Gitflow
+- Design
+
+### Autres :
+
+- Utilisation de WebView (via Android Studio)
+- Ajout d'une icon d'application personnalisé
+- Troisième ecran
+
