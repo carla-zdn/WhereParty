@@ -13,4 +13,4 @@ Cette application à pour but de trouver des évènements musicaux dans une vill
 - Possibilité de rechercher un ville ou d'appuyez sur le bouton de localisation pour chercher les villes proches
 - Si il y a les données d'une ville sauvegardé en cache cela affiche directement cette ville comme sur la première image
 
-<img src="readmeImage/Welcome-Cache.png" width= 250> <img src="readmeImage/Welcome-Search.png">
+<img src="readmeImage/Welcome-Cache.png" width= 400> <img src="readmeImage/Welcome-Search.png" width= 400>
