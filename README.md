@@ -25,6 +25,6 @@ Cette application à pour but de trouver des évènements musicaux dans une vill
 
 <img src="readmeImage/Un%20evenement.png" width= 325>
 
-  - Si l'on clique sur l'artiste : aller sur la page de l'artiste
-  - Si l'on clique sur l'endroit : aller sur la page de la salle
-  - Si l'on clique ailleur : aller sur la page de l'évènement
+    - Si l'on clique sur l'artiste : aller sur la page de l'artiste
+    - Si l'on clique sur l'endroit : aller sur la page de la salle
+    - Si l'on clique ailleurs : aller sur la page de l'évènement
