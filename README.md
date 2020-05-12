@@ -32,4 +32,4 @@ Cette application à pour but de trouver des évènements musicaux dans une vill
 
 - Voici des exemples de différents écrans pour l'évènement juste au dessus
 
-<img src="readmeImage/readmeImage/Evenement%20-%20Artiste.png.png" width= 325> <img src="readmeImage/Evenement%20-%20Salle.png" width= 325> <img src="readmeImage/Evenement%20-%20Evenement.png" width= 325>
+<img src="readmeImage/readmeImage/Evenement%20-%20Artiste.png" width= 300> <img src="readmeImage/Evenement%20-%20Salle.png" width= 300> <img src="readmeImage/Evenement%20-%20Evenement.png" width= 300>
