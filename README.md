@@ -27,3 +27,9 @@ Cette application à pour but de trouver des évènements musicaux dans une vill
 	- Si l'on clique ailleurs : aller sur la page de l'évènement
 	
 <img src="readmeImage/Un%20evenement.png" width= 325>
+
+### Ecrans d'inforamtion
+
+- Voici des exemples de différents écrans pour l'évènement juste au dessus
+
+<img src="readmeImage/readmeImage/Evenement%20-%20Artiste.png.png" width= 325> <img src="readmeImage/Evenement%20-%20Salle.png" width= 325> <img src="readmeImage/Evenement%20-%20Evenement.png" width= 325>
